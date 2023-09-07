@@ -20,6 +20,9 @@ To install and set up the PMP project locally, follow these steps:
     cp .env.example .env
   ```
   ```
+    composer install
+  ```
+  ```
     php artisan key:generate
   ```
   
