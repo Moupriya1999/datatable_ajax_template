@@ -30,35 +30,42 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body>
+    <button id="loadDataTable" style="margin-bottom: 10px; background-color:lightblue;">Load DataTable</button>
+
     <div class="container">
         <div class="row">
-            {{-- <div class="col-md-6">
-                <!-- Date Range Filter -->
-                <div class="form-group">
-                    <label for="start_date">Start Date:</label>
-                    <input type="date" class="form-control" id="start_date">
-                </div>
-                <div class="form-group">
-                    <label for="end_date">End Date:</label>
-                    <input type="date" class="form-control" id="end_date">
-                </div>
-            </div> --}}
-            <div class="col-md-6">
-                <!-- Status Filter -->
+           
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="status">Status:</label>
-                    <select class="form-control" id="status">
+                    <select id="status" name="status">
                         <option value="">All</option>
                         <option value="1">Active</option>
                         <option value="0">Inactive</option>
                     </select>
+                    
                 </div>
             </div>
-        </div>
-        <button id="resetDataTable" style="margin-bottom: 10px; background-color: lightcoral;">Reset Filters</button>
 
-        <button id="loadDataTable" style="margin-bottom: 10px; background-color:lightblue;">Load DataTable</button>
-        <input type="text" id="datefilter" name="datefilter" value="" />
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="text" id="datefilter" name="datefilter" value="" placeholder=" Select date range...">
+                    
+                </div>
+            </div>
+
+            <!-- Reset Button -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <button id="resetDataTable" style="margin-bottom: 10px;border-color: lightgrey;  float:right;">
+                        ⟳ Filters
+                    </button>
+                    
+                </div>
+            </div>
+
+        </div>
+       
 
         <button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
 
@@ -75,7 +82,7 @@
                 </tr>
             </thead>
         </table>
-
+    </div>    
         <!-- Edit Modal -->
         <div class="modal fade" id="editEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
