@@ -1,3 +1,48 @@
+# Installation
+
+To install and set up the PMP project locally, follow these steps:
+
+* Clone the repository using the following command
+  ```
+    git clone https://github.com/masc4424/datatable_ajax.git
+  ```
+  
+* Navigate to the project directory:<br>
+  ```
+    cd datatableajax
+  ```
+  
+* Install the project dependencies using Composer:<br>
+   composer install
+
+* Add .env file to your project
+  ```
+    cp .env.example .env
+  ```
+  ```
+    composer install
+  ```
+  ```
+    php artisan key:generate
+  ```
+  
+* Configure the .env file with your database credentials and other necessary settings.
+  
+* Run database migrations
+  ```
+   php artisan migrate
+  ```
+  
+* Start the development server
+  ```
+   php artisan serve
+  ```
+  
+* Access the application by visiting http://localhost:8000 or http://127.0.0.1:8000 if you are using your own domain http://<your_domain> in your web browser.
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

@@ -30,24 +30,42 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body>
+    <button id="loadDataTable" style="margin-bottom: 10px; background-color:lightblue;">Load DataTable</button>
+
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <!-- Status Filter -->
-                    <div class="form-group mb-2">
-                        <label for="status">Status:</label>
-                        <select class="form-control" id="status">
-                            <option value="">All</option>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                        </select>
-                    </div>
+           
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select id="status" name="status">
+                        <option value="">All</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                    
+                </div>
             </div>
-        </div>
-        <button id="resetDataTable" style="margin-bottom: 10px; background-color: lightcoral;">Reset Filters</button>
 
-        <button id="loadDataTable" style="margin-bottom: 10px; background-color:lightblue;">Load DataTable</button>
-        <input type="text" id="datefilter" name="datefilter" value="" />
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="text" id="datefilter" name="datefilter" value="" placeholder=" Select date range...">
+                    
+                </div>
+            </div>
+
+            <!-- Reset Button -->
+            <div class="col-md-6">
+                <div class="form-group">
+                    <button id="resetDataTable" style="margin-bottom: 10px;border-color: lightgrey;  float:right;">
+                        ⟳ Filters
+                    </button>
+                    
+                </div>
+            </div>
+
+        </div>
+       
 
         <button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
 
@@ -64,7 +82,7 @@
                 </tr>
             </thead>
         </table>
-
+    </div>    
         <!-- Edit Modal -->
         <div class="modal fade" id="editEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -215,7 +233,13 @@ $(document).ready(function () {
         table = $('#empTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('getEmployees') }}",
+            // ajax: "{{ route('getEmployees') }}",
+            ajax: {
+                url: "{{ route('getEmployees') }}",
+                data: function (d) {
+                    d.status = $('#status').val();
+                },
+            },
             columns: [
                 {
                     data: null,
@@ -352,6 +376,13 @@ $(document).ready(function () {
                     pageLength: 10, // Default page length when the table is initialized
                 });
             }
+
+                // Redraw the table based on custom input
+                 $('#status').on('change', function () {
+                    if ($.fn.DataTable.isDataTable('#empTable')) {
+                        table.draw();
+                    }
+                });
 
             // Handle edit button click
             $('#empTable').on('click', '.edit-record', function () {
