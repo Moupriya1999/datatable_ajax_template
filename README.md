@@ -4,15 +4,12 @@ To install and set up the PMP project locally, follow these steps:
 
 * Clone the repository using the following command
   ```
-    git clone https://github.com/MousumiDutta2000/PMP_ATC.git
+    git clone https://github.com/masc4424/datatable_ajax.git
   ```
   
 * Navigate to the project directory:<br>
   ```
-    cd PMP_ATC
-  ```
-  ```
-    cd crud
+    cd datatableajax
   ```
   
 * Install the project dependencies using Composer:<br>
