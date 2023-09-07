@@ -88,22 +88,11 @@ class EmployeesController extends Controller
             $columnName = $columnName_arr[$columnIndex]['data']; // Column name
             $columnSortOrder = $order_arr[0]['dir']; // asc or desc
             $searchValue = $search_arr['value']; // Search value
-
-            $status = $request->input('status');
-            
-
-            // Start building the query
-            
     
-            // Query to filter by date range
+            // Start building the query
             $query = Employees::orderBy($columnName, $columnSortOrder)
                 ->where('name', 'like', '%' . $searchValue . '%')
                 ->whereBetween('date', [$startDate, $endDate]); // Filter by date range
-
-            // Filter by status
-            if ($status !== null) {
-                $query->where('status', $status);
-            }
     
             // Total records with filter
             $totalRecordswithFilter = $query->count();
@@ -146,7 +135,7 @@ class EmployeesController extends Controller
             // Return an error response
             return response()->json(['error' => 'Error fetching filtered data.'], 500);
         }
-    }
+    }    
     
     public function getEmployee($id)
     {
@@ -212,5 +201,38 @@ class EmployeesController extends Controller
         }
     }
 
+    public function getEmployeesByStatus(Request $request)
+    {
+        $status = $request->input('status');
+
+        // Assuming you have a 'status' column in your 'employees' table
+        $filteredEmployees = Employee::where('status', $status)->get();
+
+        return response()->json(['data' => $filteredEmployees]);
+    }
+
+    public function processSelectedEmployees(Request $request)
+    {
+        try {
+            $selectedIds = $request->input('ids');
+    
+            // You can perform any desired action with the selected IDs here
+            // For example, you can update the status of selected employees or perform other operations
+            
+            // For demonstration purposes, let's assume you want to retrieve the usernames of the selected employees
+            $selectedUsernames = Employees::whereIn('id', $selectedIds)->pluck('username')->toArray();
+    
+            // Return a JSON response with only the selected usernames
+            return response()->json([
+                'selectedUsernames' => $selectedUsernames,
+            ]);
+        } catch (\Exception $e) {
+            // Log the error message
+            Log::error('Error while processing selected employees: ' . $e->getMessage());
+    
+            // Return an error response
+            return response()->json(['error' => 'Error processing selected employees.'], 500);
+        }
+    }
 }
 

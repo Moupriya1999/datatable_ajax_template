@@ -15,6 +15,9 @@ Route::delete('/delete-employee/{id}', [EmployeesController::class, 'deleteEmplo
 
 Route::delete('/delete-selected-employees', [EmployeesController::class, 'deleteSelectedEmployees'])->name('deleteSelectedEmployees');
 
+Route::get('/get-employees-by-status', 'EmployeeController@getEmployeesByStatus')->name('getEmployeesByStatus');
+
+Route::post('/process-selected-employees', [EmployeesController::class, 'processSelectedEmployees'])->name('processSelectedEmployees');
 
 // Route::get('/', function () {
 //     return view('welcome');
