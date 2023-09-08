@@ -277,15 +277,15 @@ class EmployeesController extends Controller
         }
     }
 
-    public function getEmployeesByStatus(Request $request)
-    {
-        $status = $request->input('status');
+    // public function getEmployeesByStatus(Request $request)
+    // {
+    //     $status = $request->input('status');
 
-        // Assuming you have a 'status' column in your 'employees' table
-        $filteredEmployees = Employee::where('status', $status)->get();
+    //     // Assuming you have a 'status' column in your 'employees' table
+    //     $filteredEmployees = Employee::where('status', $status)->get();
 
-        return response()->json(['data' => $filteredEmployees]);
-    }
+    //     return response()->json(['data' => $filteredEmployees]);
+    // }
 
     public function processSelectedEmployees(Request $request)
     {

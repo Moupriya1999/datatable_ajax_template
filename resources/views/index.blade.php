@@ -67,7 +67,7 @@
         </div>
        
 
-        <button id="deleteSelected" class="btn btn-danger">Delete Selected</button>
+        {{-- <button id="deleteSelected" class="btn btn-danger">Delete Selected</button> --}}
 
         <table id='empTable' width='100%' border="1" style='border-collapse: collapse;'>
             <thead>
@@ -82,6 +82,8 @@
                 </tr>
             </thead>
         </table>
+        <button id="acceptSelected" class="btn btn-primary" disabled>Accept Selected</button>
+
     </div>    
         <!-- Edit Modal -->
         <div class="modal fade" id="editEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
@@ -167,8 +169,7 @@
                 </div>
             </div>
         </div>
-        <button id="acceptSelected" class="btn btn-primary" disabled>Accept Selected</button>
-    </div>
+    
 
 <!-- Script -->
 <script type="text/javascript">
